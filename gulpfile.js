@@ -23,6 +23,7 @@ gulp.task('gulp-webpack', function () {
         .pipe(uglify())
         .pipe(gulp.dest('assets/js/'))
         .pipe(notify('webpack is finished!'))
+        .pipe(connect.reload())
 });
 
 gulp.task('connect', function() {
@@ -39,7 +40,7 @@ gulp.task('html', function () {
 
 gulp.task('watch',function(){
     gulp.watch(paths.html,['html']);
-    gulp.watch(paths.script,['gulp-webpack','html']);
+    gulp.watch(paths.script,['gulp-webpack']);
 });
 
 gulp.task('default', ['connect', 'watch']);

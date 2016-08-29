@@ -2,22 +2,33 @@
  * Created by hyb on 16/8/23.
  */
 var path = require('path');
+var node_modules = path.resolve(__dirname, './node_modules');
+var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
+
 
 module.exports = {
     entry: {
         main:path.resolve(__dirname,'./app/main.js'),
-        list:path.resolve(__dirname,'./app/list.js')
+        list:path.resolve(__dirname,'./app/list.js'),
+        cssT:path.resolve(__dirname,'./app/cssTransition.js'),
+        performance:path.resolve(__dirname,'./app/performance.js')
     },
     output: {
         path: __dirname + '/assets/js/',
         publicPath: "/assets/js/",
         filename: '[name].bundle.js'
     },
+    //resolve: {
+    //    alias: {
+    //        'react': pathToReact
+    //    }
+    //},
     module: {
+        noParse: [pathToReact],
         //加载器配置
         loaders: [
             {test: /\.css$/, loader: 'style-loader!css-loader'},
-            {test: /\.less/, loader: 'less-loader'},
+            {test: /\.less/, loader: 'style!css!less'},
             {test: /\.jsx?$/, loader: 'jsx-loader?harmony'},
             {test: /\.scss$/, loader: 'style!css!sass?sourceMap'},
             {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'}
