@@ -1,10 +1,15 @@
 /**
  * Created by hyb on 16/8/29.
  */
+/** @jsx React.DOM */
+var React=require('react-addons');
+var TestUtils=React.TestUtils;
+var helloWorld=require('../app/sum');
 jest.unmock('../app/sum');
-describe('sum', () => {
-    it('adds 1 + 2 to equal 3', () => {
-        const sum = require('../app/sum');
-        expect(sum(1, 2)).toBe(3);
-    });
+describe('TestHelloWorld', () => {
+    describe('renderToDocument',() =>{
+        it('test hello world', () => {
+            TestUtils.renderIntoDocument(<helloWorld/>);
+        });
+    })
 });

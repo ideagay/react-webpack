@@ -2,27 +2,29 @@
  * Created by hyb on 16/8/23.
  */
 var path = require('path');
-var node_modules = path.resolve(__dirname, './node_modules');
+var node_modules = path.resolve(__dirname, 'node_modules');
 var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
-
+var pathToReactDOM = path.resolve(node_modules, 'react-dom/dist/react-dom.min.js');
 
 module.exports = {
     entry: {
-        main:path.resolve(__dirname,'./app/main.js'),
-        list:path.resolve(__dirname,'./app/list.js'),
-        cssT:path.resolve(__dirname,'./app/cssTransition.js'),
-        performance:path.resolve(__dirname,'./app/performance.js')
+        main:path.resolve(__dirname,'app/main.js'),
+        list:path.resolve(__dirname,'app/list.js'),
+        cssT:path.resolve(__dirname,'app/cssTransition.js'),
+        performance:path.resolve(__dirname,'app/performance.js'),
+        router:path.resolve(__dirname,'app/router.js')
     },
     output: {
-        path: __dirname + '/assets/js/',
-        publicPath: "/assets/js/",
+        path: path.resolve(__dirname ,'assets/js/'),
+        publicPath: "assets/js/",
         filename: '[name].bundle.js'
     },
-    //resolve: {
-    //    alias: {
-    //        'react': pathToReact
-    //    }
-    //},
+    resolve: {
+        alias: {
+            //'react': pathToReact,
+            //'react-dom': pathToReactDOM
+        }
+    },
     module: {
         noParse: [pathToReact],
         //加载器配置
